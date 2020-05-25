@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bb7a97e8-d630-4c23-bd77-dbbeb8d18202" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/migrations/0002_todo_completed_at.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/migrations/0003_auto_20190307_1500.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/migrations/0004_auto_20190321_2123.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/migrations/0005_auto_20190325_2322.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/templates/core/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/templates/core/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/templates/core/new.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/core/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/static/css/signin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/templates/registration/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/to_do/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/to_do/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/to_do/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-todo-list/to_do/wsgi.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cEzBCyKeqiOBMSrhYeEeJrN8Wo" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bb7a97e8-d630-4c23-bd77-dbbeb8d18202" name="Default Changelist" comment="" />
+      <created>1590108402626</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590108402626</updated>
+      <workItem from="1590108404993" duration="10213000" />
+      <workItem from="1590148617285" duration="4463000" />
+      <workItem from="1590154919727" duration="808000" />
+      <workItem from="1590156920333" duration="5108000" />
+      <workItem from="1590266553214" duration="1172000" />
+      <workItem from="1590433020075" duration="2656000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.py" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="364" y="157" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590159672053">
+      <screen x="0" y="96" width="1600" height="804" />
+    </state>
+    <state x="364" y="157" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590159672053" />
+    <state x="1911" y="127" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590114937478" />
+    <state width="1067" height="356" key="GridCell.Tab.0.bottom" timestamp="1590159676690">
+      <screen x="0" y="96" width="1600" height="804" />
+    </state>
+    <state width="1067" height="356" key="GridCell.Tab.0.bottom/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590159676690" />
+    <state width="856" height="278" key="GridCell.Tab.0.bottom/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590115566958" />
+    <state width="1067" height="356" key="GridCell.Tab.0.center" timestamp="1590159676689">
+      <screen x="0" y="96" width="1600" height="804" />
+    </state>
+    <state width="1067" height="356" key="GridCell.Tab.0.center/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590159676689" />
+    <state width="856" height="278" key="GridCell.Tab.0.center/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590115566958" />
+    <state width="1067" height="356" key="GridCell.Tab.0.left" timestamp="1590159676689">
+      <screen x="0" y="96" width="1600" height="804" />
+    </state>
+    <state width="1067" height="356" key="GridCell.Tab.0.left/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590159676689" />
+    <state width="856" height="278" key="GridCell.Tab.0.left/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590115566958" />
+    <state width="1067" height="356" key="GridCell.Tab.0.right" timestamp="1590159676689">
+      <screen x="0" y="96" width="1600" height="804" />
+    </state>
+    <state width="1067" height="356" key="GridCell.Tab.0.right/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590159676689" />
+    <state width="856" height="278" key="GridCell.Tab.0.right/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590115566958" />
+    <state x="1667" y="96" width="770" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1590114025661">
+      <screen x="1600" y="69" width="1366" height="768" />
+    </state>
+    <state x="1667" y="96" width="770" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590114025661" />
+    <state x="105" y="188" width="1243" height="522" key="find.popup" timestamp="1590161274082">
+      <screen x="0" y="96" width="1600" height="804" />
+    </state>
+    <state x="105" y="188" width="1243" height="522" key="find.popup/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590161274082" />
+    <state x="444" y="189" width="788" height="710" key="search.everywhere.popup" timestamp="1590161249788">
+      <screen x="0" y="96" width="1600" height="804" />
+    </state>
+    <state x="444" y="189" width="788" height="710" key="search.everywhere.popup/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590161249788" />
+    <state x="1979" y="158" width="672" height="678" key="search.everywhere.popup/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590114400538" />
+  </component>
+</project>
