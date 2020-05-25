@@ -23,21 +23,17 @@ GRANT ALL PRIVILEGES ON *.* TO 'devops_dev'@'172.17.0.1';       <- Dar privilég
 SHOW GRANTS FOR 'devops_dev'@'172.17.0.1';                      <- Verificar se deu certo
 DROP USER 'devops'@'172.17.0.1'                                 <- Drop
 ### All
-CREATE USER 'devops'@'172.17.0.1' IDENTIFIED BY 'mestre';
-GRANT ALL PRIVILEGES ON *.* TO 'devops'@'172.17.0.1';
-CREATE USER 'devops_dev'@'172.17.0.1' IDENTIFIED BY 'mestre';
-GRANT ALL PRIVILEGES ON *.* TO 'devops_dev'@'172.17.0.1';
-CREATE USER 'devops_dev'@'127.0.0.1' IDENTIFIED BY 'mestre';
-GRANT ALL PRIVILEGES ON *.* TO 'devops_dev'@'127.0.0.1';
+create user 'devops'@'%' identified by 'mestre';
+create user 'devops_dev'@'%' identified by 'mestre';
 create database todo;
 create database todo_dev;
+create database test_todo_dev;
+grant all privileges on *.* to devops@'%';
+grant all privileges on *.* to devops_dev@'%';
 
-CREATE USER 'devops'@'localhost' IDENTIFIED BY 'mestre';
-GRANT ALL PRIVILEGES ON *.* TO 'devops'@'localhost';
-CREATE USER 'devops'@'127.0.0.1' IDENTIFIED BY 'mestre';
-GRANT ALL PRIVILEGES ON *.* TO 'devops'@'127.0.0.1';
-CREATE USER 'devops'@'192.168.0.17' IDENTIFIED BY 'mestre';
-GRANT ALL PRIVILEGES ON *.* TO 'devops'@'192.168.0.17';
+#Alterando o mysqld.cnf
+cd configs/mysqld.cnf <- Preencher com as informações do arquivo abaixo
+vim /etc/mysql/my.cnf
 
 ### Recarregar as permissões
 sudo usermod -aG docker $USER
@@ -46,8 +42,9 @@ sudo usermod -aG docker jenkins
 ### Python - Processo manual
 sudo pip3 install virtualenv nose coverage nosexcover pylint
 cd /home/padtec/dev-tools/projects/alura-pipeline/project-todo-list
+virtualenv  --always-copy  venv-django-todolist
 source venv-django-todolist/bin/activate
-pip install -r requirements.txt
+sudo pip install -r requirements.txt
 #### Fazendo a migracao inicial dos dados
 python manage.py makemigrations
 python manage.py migrate

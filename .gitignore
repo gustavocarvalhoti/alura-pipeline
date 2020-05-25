@@ -1,6 +1,6 @@
-# Django #
 venv-django-todolist
 .vscode
+# Django #
 *.log
 *.pot
 *.pyc
@@ -8,58 +8,58 @@ __pycache__
 todolist.sqlite3
 media
 
-# Python #
-*.py[cod]
-*$py.class
+# Python # 
+*.py[cod] 
+*$py.class 
 
-# Distribution / packaging
-.Python build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-*.manifest
-*.spec
+# Distribution / packaging 
+.Python build/ 
+develop-eggs/ 
+dist/ 
+downloads/ 
+eggs/ 
+.eggs/ 
+lib/ 
+lib64/ 
+parts/ 
+sdist/ 
+var/ 
+wheels/ 
+*.egg-info/ 
+.installed.cfg 
+*.egg 
+*.manifest 
+*.spec 
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-.pytest_cache/
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
+# Unit test / coverage reports 
+htmlcov/ 
+.tox/ 
+.coverage 
+.coverage.* 
+.cache 
+.pytest_cache/ 
+nosetests.xml 
+coverage.xml 
+*.cover 
+.hypothesis/ 
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# Jupyter Notebook 
+.ipynb_checkpoints 
 
-# pyenv
-.python-version
+# pyenv 
+.python-version 
 
-# celery
-celerybeat-schedule.*
+# celery 
+celerybeat-schedule.* 
 
-# SageMath parsed files
-*.sage.py
+# SageMath parsed files 
+*.sage.py 
 
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+# Environments 
+.env 
+.venv 
+env/ 
+venv/ 
+ENV/ 
+env.bak/ 
+venv.bak/ 
