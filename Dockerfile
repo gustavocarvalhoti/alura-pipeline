@@ -5,9 +5,6 @@ COPY . /usr/src/app
 WORKDIR /usr/src/app
 COPY requirements.txt ./
 # Instalando os requerimentos com o PIP
-RUN pip3 install virtualenv nose coverage nosexcover pylint
-RUN virtualenv  --always-copy  venv-django-todolist
-RUN source venv-django-todolist/bin/activate
 RUN pip install --no-cache-dir -r requirements.txt
 # Expondo a porta da APP
 EXPOSE 8000
