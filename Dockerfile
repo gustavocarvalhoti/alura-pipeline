@@ -1,10 +1,13 @@
-FROM python:3.6
-#Copiando os arquivos do projeto para o diretorio usr/src/app 
+FROM python:3.7
+#Copiando os arquivos do projeto para o diretorio usr/src/app
 COPY . /usr/src/app
 #Definindo o diretorio onde o CMD será executado e copiando o arquivo de requerimentos
 WORKDIR /usr/src/app
 COPY requirements.txt ./
 # Instalando os requerimentos com o PIP
+RUN sudo pip3 install virtualenv nose coverage nosexcover pylint
+RUN virtualenv  --always-copy  venv-django-todolist
+RUN source venv-django-todolist/bin/activate
 RUN pip install --no-cache-dir -r requirements.txt
 # Expondo a porta da APP
 EXPOSE 8000
