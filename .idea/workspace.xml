@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb7a97e8-d630-4c23-bd77-dbbeb8d18202" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/db8454b2-701c-4721-a363-42bc45900a30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/db8454b2-701c-4721-a363-42bc45900a30.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/mysqld.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/configs/mysqld.cnf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/to_do/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +55,7 @@
       <workItem from="1590266553214" duration="1172000" />
       <workItem from="1590433020075" duration="14262000" />
       <workItem from="1590596489499" duration="2096000" />
-      <workItem from="1590599944635" duration="2389000" />
+      <workItem from="1590599944635" duration="3178000" />
     </task>
     <servers />
   </component>
@@ -84,10 +81,10 @@
     </state>
     <state x="364" y="157" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590600912170" />
     <state x="1911" y="127" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590443862804" />
-    <state x="339" y="47" width="912" height="804" key="CommitChangelistDialog2" timestamp="1590446388248">
+    <state x="265" y="16" width="1254" height="835" key="CommitChangelistDialog2" timestamp="1590603090895">
       <screen x="0" y="96" width="1600" height="804" />
     </state>
-    <state x="339" y="47" width="912" height="804" key="CommitChangelistDialog2/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590446388248" />
+    <state x="265" y="16" width="1254" height="835" key="CommitChangelistDialog2/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590603090895" />
     <state x="583" y="207" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590602142590">
       <screen x="0" y="96" width="1600" height="804" />
     </state>
