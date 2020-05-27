@@ -1,6 +1,18 @@
 # Treinamento Alura - Jenkins e Docker: Pipeline de entrega continua
 https://cursos.alura.com.br/course/pipeline-ci-jenkins-docker
 
+## Tecnologias utilizadas
+```bash
+Jenkins
+MySQL
+Python
+Docker
+Dockerhub
+Github
+Slack
+Sonarcube
+```
+
 ## Ubuntu 18.04
 https://github.com/gustavocarvalhoti/alura-pipeline/tree/master/project-todo-list
 
@@ -32,8 +44,8 @@ grant all privileges on *.* to devops@'%';
 grant all privileges on *.* to devops_dev@'%';
 
 #Alterando o mysqld.cnf
-cd configs/mysqld.cnf <- Preencher com as informações do arquivo abaixo
-vim /etc/mysql/my.cnf
+cd configs/mysqld.cnf 
+vim /etc/mysql/my.cnf <- Preencher com as informações do arquivo acima
 
 ### Recarregar as permissões
 sudo usermod -aG docker $USER
@@ -54,6 +66,9 @@ user: alura - pass: mestre123
 # Rodando a app
 python manage.py runserver 0:8000
 http://localhost:8000
+
+### Sonarqube
+docker run -d --name sonarqube -p 9000:9000 sonarqube:lts
 ```
 
 ## Comandos
@@ -188,7 +203,7 @@ Token de integração: <Token do Jenkins app no seu canal do Slack>
 Job: todo-list-desenvolvimento será feito pelo Jenkinsfile (Próximas aulas)
 Job: todo-list-producao: Ações de pós-build > Slack Notifications: Notify Success e Notify Every Failure
 
-### Novo Job: todo-list-desenvolvimento
+### Novo Job: todo-list-desenvolvimento - Ele dá o play na imagem
 # Tipo: Pipeline
 # Este build é parametrizado com 2 Builds de Strings:
 Nome: image
@@ -254,7 +269,241 @@ pipeline {
         }
     }
 }
-
 # todo-list-principal
 # Definir post build: image=$image
+
+### Criar o job para colocar a app em producao:
+Nome: todo-list-producao
+Tipo: Freestyle
+# Este build é parametrizado com 2 Builds de Strings:
+    Nome: image
+    Valor padrão: - Vazio, pois o valor sera recebido do job anterior.
+    Nome: DOCKER_HOST
+    Valor padrão: tcp://127.0.0.1:2376
+
+# Ambiente de build > Provide configuration files
+    File: .env-prod
+    Target: .env
+
+### Build > Executar shell
+#Execute shell
+#!/bin/sh
+{ 
+    docker run -d -p 80:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-producao/.env:/usr/src/app/to_do/.env --name=django-todolist-prod $image:latest
+} || { # catch
+    docker rm -f django-todolist-prod
+    docker run -d -p 80:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-producao/.env:/usr/src/app/to_do/.env --name=django-todolist-prod $image:latest
+}
+Ações de pós-build > Slack Notifications: Notify Success e Notify Every Failure
+
+### Post build actions para os 3 jobs
+Job: jenkins-todo-list-principal > Ações de pós-build > Trigger parameterized buld on other projects
+    Projects to build: todo-list-desenvolvimento
+    # Add parameters > Predefined parameters
+        image=${image}
+Job: todo-list-desenvolvimento
+pipeline {
+    environment {
+        dockerImage = "${image}"
+    }
+    agent any    
+    stages {
+        stage('Carregando o ENV de desenvolvimento') {
+            steps {
+                configFileProvider([configFile(fileId: '71bbc5b0-00b1-4f58-8e81-a16fcf99dbed', variable: 'env')]) {
+                    sh 'cat $env > .env'
+                }
+            }
+        }
+        stage('Derrubando o container antigo') {
+            steps {
+                script {
+                    try {
+                        sh 'docker rm -f django-todolist-dev'
+                    } catch (Exception e) {
+                        sh "echo $e"
+                    }
+                }
+            }
+        }        
+        stage('Subindo o container novo') {
+            steps {
+                script {
+                    try {
+                        sh 'docker run -d -p 81:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-desenvolvimento/.env:/usr/src/app/to_do/.env --name=django-todolist-dev ' + dockerImage + ':latest'
+                    } catch (Exception e) {
+                        #slackSend (color: 'error', message: "[ FALHA ] Não foi possivel subir o container - ${BUILD_URL} em ${currentBuild.duration}s", tokenCredentialId: 'slack-token')
+                        sh "echo $e"
+                        currentBuild.result = 'ABORTED'
+                        error('Erro')
+                    }
+                }
+            }
+        }
+        stage('Notificando o usuario') {
+            steps {
+                #slackSend (color: 'good', message: '[ Sucesso ] O novo build esta disponivel em: http://192.168.33.10:81/ ', tokenCredentialId: 'slack-token')
+            }
+        }
+        stage ('Fazer o deploy em producao?') {
+            steps {
+                script {
+                    #slackSend (color: 'warning', message: "Para aplicar a mudança em produção, acesse [Janela de 10 minutos]: ${JOB_URL}", tokenCredentialId: 'slack-token')
+                    timeout(time: 10, unit: 'MINUTES') {
+                        input(id: "Deploy Gate", message: "Deploy em produção?", ok: 'Deploy')
+                    }
+                }
+            }
+        }
+        stage (deploy) {
+            steps {
+                script {
+                    try {
+                        build job: 'todo-list-producao', parameters: [[$class: 'StringParameterValue', name: 'image', value: dockerImage]]
+                    } catch (Exception e) {
+                        #slackSend (color: 'error', message: "[ FALHA ] Não foi possivel subir o container em producao - ${BUILD_URL}", tokenCredentialId: 'slack-token')
+                        sh "echo $e"
+                        currentBuild.result = 'ABORTED'
+                        error('Erro')
+                    }
+                }
+            }
+        }
+    }
+}
+
+### Criar o job para colocar a app em producao:
+Nome: todo-list-producao
+Tipo: Freestyle
+# Este build é parametrizado com 2 Builds de Strings:
+    Nome: image
+    Valor padrão: - Vazio, pois o valor sera recebido do job anterior.
+    Nome: DOCKER_HOST
+    Valor padrão: tcp://127.0.0.1:2376
+# Ambiente de build > Provide configuration files
+    File: .env-prod
+    Target: .env
+# Build > Executar shell
+    #Execute shell
+    #!/bin/sh
+    { 
+        docker run -d -p 80:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-producao/.env:/usr/src/app/to_do/.env --name=django-todolist-prod $image:latest
+
+    } || { # catch
+        docker rm -f django-todolist-prod
+        docker run -d -p 80:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-producao/.env:/usr/src/app/to_do/.env --name=django-todolist-prod $image:latest
+    } 
+Ações de pós-build > Slack Notifications: Notify Success e Notify Every Failure
+
+### Post build actions para os 3 jobs
+Job: jenkins-todo-list-principal > Ações de pós-build > Trigger parameterized buld on other projects
+    Projects to build: todo-list-desenvolvimento
+    # Add parameters > Predefined parameters
+        image=${image}
+Job: todo-list-desenvolvimento
+pipeline {
+    environment {
+        dockerImage = "${image}"
+    }
+    agent any
+    stages {
+        stage('Carregando o ENV de desenvolvimento') {
+            steps {
+                configFileProvider([configFile(fileId: '2ed9697c-45fc-4713-a131-53bdbeea2ae6', variable: 'env')]) {
+                    sh 'cat $env > .env'
+                }
+            }
+        }
+        stage('Derrubando o container antigo') {
+            steps {
+                script {
+                    try {
+                        sh 'docker rm -f django-todolist-dev'
+                    } catch (Exception e) {
+                        sh "echo $e"
+                    }
+                }
+            }
+        }        
+        stage('Subindo o container novo') {
+            steps {
+                script {
+                    try {
+                        sh 'docker run -d -p 81:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-desenvolvimento/.env:/usr/src/app/to_do/.env --name=django-todolist-dev ' + dockerImage + ':latest'
+                    } catch (Exception e) {
+                        slackSend (color: 'error', message: "[ FALHA ] Não foi possivel subir o container - ${BUILD_URL} em ${currentBuild.duration}s", tokenCredentialId: 'slack-token')
+                        sh "echo $e"
+                        currentBuild.result = 'ABORTED'
+                        error('Erro')
+                    }
+                }
+            }
+        }
+        stage('Notificando o usuario') {
+            steps {
+                slackSend (color: 'good', message: '[ Sucesso ] O novo build esta disponivel em: http://192.168.33.10:81/ ', tokenCredentialId: 'slack-token')
+            }
+        }
+        stage ('Fazer o deploy em producao?') {
+            steps {
+                script {
+                    slackSend (color: 'warning', message: "Para aplicar a mudança em produção, acesse [Janela de 10 minutos]: ${JOB_URL}", tokenCredentialId: 'slack-token')
+                    timeout(time: 10, unit: 'MINUTES') {
+                        input(id: "Deploy Gate", message: "Deploy em produção?", ok: 'Deploy')
+                    }
+                }
+            }
+        }
+        stage (deploy) {
+            steps {
+                script {
+                    try {
+                        build job: 'todo-list-producao', parameters: [[$class: 'StringParameterValue', name: 'image', value: dockerImage]]
+                    } catch (Exception e) {
+                        slackSend (color: 'error', message: "[ FALHA ] Não foi possivel subir o container em producao - ${BUILD_URL}", tokenCredentialId: 'slack-token')
+                        sh "echo $e"
+                        currentBuild.result = 'ABORTED'
+                        error('Erro')
+                    }
+                }
+            }
+        }
+    }
+}
+
+### Subindo o container com o Sonarcube
+Na máquina devops (Vagrant): docker run -d --name sonarqube -p 9000:9000 sonarqube:lts
+# Acessar: http://localhost:9000
+Usuário: admin
+Senha: admin
+New project
+Name: jenkins-todolist
+    Provide a token: jenkins-todolist e anotar o seu token
+    Run analysis on your project > Other (JS, Python, PHP, ...) > Linux > django-todo-list
+# Copie o shell script fornecido
+sonar-scanner \
+  -Dsonar.projectKey=jenkins-todolist \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=2c354e1782796f46b18ccc970c2d1284b663d029
+
+# Criar um job para Coverage com o nome: todo-list-sonarqube - free-style
+# Gerenciamento de código fonte > Git
+    git: git@github.com:alura-cursos/jenkins-todo-list.git (Selecione as mesmas credenciais)
+    branch: master
+    Pool SCM: * * * * *
+    Delete workspace before build starts
+    Execute Script:
+# Build > Adicionar passo no build > Executar Shell
+#!/bin/bash
+# Baixando o Sonarqube
+wget https://s3.amazonaws.com/caelum-online-public/1110-jenkins/05/sonar-scanner-cli-3.3.0.1492-linux.zip
+# Descompactando o scanner
+unzip sonar-scanner-cli-3.3.0.1492-linux.zip
+# Rodando o Scanner
+./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner   -X \
+  -Dsonar.projectKey=jenkins-todolist \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=86d59838b116dd62fb9f82c0a199af6c03e6fa2a
 ```
