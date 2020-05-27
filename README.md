@@ -43,6 +43,11 @@ create database test_todo_dev;
 grant all privileges on *.* to devops@'%';
 grant all privileges on *.* to devops_dev@'%';
 
+### Descobrir IPv4Address do container mysql
+docker network inspect bridge
+"Name": "db-mysql",
+"IPv4Address": "****",
+
 #Alterando o mysqld.cnf
 cd configs/mysqld.cnf 
 vim /etc/mysql/my.cnf <- Preencher com as informações do arquivo acima
