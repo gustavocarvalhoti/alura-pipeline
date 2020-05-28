@@ -13,8 +13,8 @@ Slack
 Sonarcube
 ```
 
-## Ubuntu 18.04
-https://github.com/gustavocarvalhoti/alura-pipeline/tree/master/project-todo-list
+## Ubuntu 18.04, meu perfil não é python, apontei para um Projeto Node, MySQL
+git@github.com:gustavocarvalhoti/heroku-node.git
 
 ## Instalar
 ```bash
@@ -96,7 +96,7 @@ cat ~/.ssh/id_rsa
 
 ### Novo job
 Home -> Novo job -> jenkins-todo-list-principal -> Construir um projeto de software free-style
--> Gerenciamento de código fonte -> Git -> git@github.com:gustavocarvalhoti/alura-pipeline.git
+-> Gerenciamento de código fonte -> Git -> git@github.com:gustavocarvalhoti/heroku-node.git
 Ambiente de build -> Delete workspace before build starts           <- Para evitar sujeira de código
 Trigger de builds -> Consultar periodicamente o SCM -> * * * * *    <- Verifica a cada minuto, verificar crontab
 
@@ -125,7 +125,7 @@ tcp://127.0.0.1:2376
 # Build step 1: Executar Shell
 # Validando a sintaxe do Dockerfile
 cd project-todo-list
-docker run --rm -i hadolint/hadolint < Dockerfile
+docker run --rm -i hadolint/hadolint < Dockerfile <- Não utilizei no projeto Node
 # Build step 2: Build/Publish Docker Image
 Directory for Dockerfile: ./project-todo-list/
 Cloud: docker
@@ -171,11 +171,11 @@ Adicionar passo no build: Executar Shell
 #!/bin/sh
 # Subindo o container de teste
 docker run -d -p 82:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/jenkins-todo-list-principal/project-todo-lis/to_do/.env:/usr/src/app/to_do/.env --name=todo-list-teste django_todolist_image_build
-# Testando a imagem
+# Testando a imagem <- Não utilizei no projeto node
 docker exec -i todo-list-teste python manage.py test --keep
 exit_code=$?
 # Derrubando o container velho
-docker rm -f todo-list-teste
+docker rm -f heroku-node-dev
 if [ $exit_code -ne 0 ]; then
 exit 1
 fi
@@ -185,7 +185,7 @@ fi
 # No job agora - Geral - Este build é parametrizado - Param String - 
 Este build é parametrizado com 2 parametros de string
 Nome: image
-Valor padrão: gustavocarvalhoti/django_todolist_image_build
+Valor padrão: gustavocarvalhoti/heroku-node-build
 Nome: DOCKER_HOST
 Valor padrão: tcp://127.0.0.1:2376
 # No build step: Build / Publish Docker Image
@@ -246,7 +246,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'docker rm -f django-todolist-dev'
+                        sh 'docker rm -f heroku-node-dev'
                     } catch (Exception e) {
                         sh "echo $e"
                     }
@@ -335,9 +335,10 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'docker run -d -p 81:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-desenvolvimento/.env:/usr/src/app/to_do/.env --name=django-todolist-dev ' + dockerImage + ':latest'
+                        sh 'docker run -p 81:3000 -d --name=heroku-node-dev ' + dockerImage + ':latest'
+                        // sh 'docker run -d -p 81:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-desenvolvimento/.env:/usr/src/app/to_do/.env --name=django-todolist-dev ' + dockerImage + ':latest'
                     } catch (Exception e) {
-                        #slackSend (color: 'error', message: "[ FALHA ] Não foi possivel subir o container - ${BUILD_URL} em ${currentBuild.duration}s", tokenCredentialId: 'slack-token')
+                        // slackSend (color: 'error', message: "[ FALHA ] Não foi possivel subir o container - ${BUILD_URL} em ${currentBuild.duration}s", tokenCredentialId: 'slack-token')
                         sh "echo $e"
                         currentBuild.result = 'ABORTED'
                         error('Erro')
@@ -366,7 +367,7 @@ pipeline {
                     try {
                         build job: 'todo-list-producao', parameters: [[$class: 'StringParameterValue', name: 'image', value: dockerImage]]
                     } catch (Exception e) {
-                        #slackSend (color: 'error', message: "[ FALHA ] Não foi possivel subir o container em producao - ${BUILD_URL}", tokenCredentialId: 'slack-token')
+                        // slackSend (color: 'error', message: "[ FALHA ] Não foi possivel subir o container em producao - ${BUILD_URL}", tokenCredentialId: 'slack-token')
                         sh "echo $e"
                         currentBuild.result = 'ABORTED'
                         error('Erro')
@@ -391,13 +392,13 @@ Tipo: Freestyle
 # Build > Executar shell
     #Execute shell
     #!/bin/sh
-    { 
-        docker run -d -p 80:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-producao/.env:/usr/src/app/to_do/.env --name=django-todolist-prod $image:latest
-
-    } || { # catch
-        docker rm -f django-todolist-prod
-        docker run -d -p 80:8000 -v /var/run/mysqld/mysqld.sock:/var/run/mysqld/mysqld.sock -v /var/lib/jenkins/workspace/todo-list-producao/.env:/usr/src/app/to_do/.env --name=django-todolist-prod $image:latest
-    } 
+    {   
+        docker run -p 82:3000 -d --name=heroku-node-homologacao $image:latest
+    } || { 
+        # catch
+        docker rm -f heroku-node-homologacao
+        docker run -p 82:3000 -d --name=heroku-node-homologacao $image:latest
+    }
 Ações de pós-build > Slack Notifications: Notify Success e Notify Every Failure
 
 ### Post build actions para os 3 jobs
@@ -494,7 +495,7 @@ sonar-scanner \
 
 # Criar um job para Coverage com o nome: todo-list-sonarqube - free-style
 # Gerenciamento de código fonte > Git
-    git: git@github.com:alura-cursos/jenkins-todo-list.git (Selecione as mesmas credenciais)
+    git: git@github.com:gustavocarvalhoti/heroku-node.git (Selecione as mesmas credenciais)
     branch: master
     Pool SCM: * * * * *
     Delete workspace before build starts

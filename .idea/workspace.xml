@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb7a97e8-d630-4c23-bd77-dbbeb8d18202" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/db8454b2-701c-4721-a363-42bc45900a30.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/db8454b2-701c-4721-a363-42bc45900a30.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/to_do/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/to_do/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +56,40 @@
       <workItem from="1590266553214" duration="1172000" />
       <workItem from="1590433020075" duration="14262000" />
       <workItem from="1590596489499" duration="2096000" />
-      <workItem from="1590599944635" duration="3178000" />
+      <workItem from="1590599944635" duration="8162000" />
+      <workItem from="1590631850123" duration="464000" />
+      <workItem from="1590632794400" duration="1796000" />
+      <workItem from="1590635984853" duration="1010000" />
     </task>
+    <task id="LOCAL-00001" summary="1558">
+      <created>1590605905013</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590605905014</updated>
+    </task>
+    <task id="LOCAL-00002" summary="1558">
+      <created>1590605962079</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590605962079</updated>
+    </task>
+    <task id="LOCAL-00003" summary="1558">
+      <created>1590606016241</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1590606016241</updated>
+    </task>
+    <task id="LOCAL-00004" summary="1558">
+      <created>1590606053915</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1590606053915</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -75,16 +108,21 @@
       </list>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1558" />
+    <option name="LAST_COMMIT_MESSAGE" value="1558" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="364" y="157" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590600912170">
-      <screen x="0" y="96" width="1600" height="804" />
+    <state x="1911" y="127" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590609922336">
+      <screen x="1600" y="69" width="1366" height="768" />
     </state>
-    <state x="364" y="157" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590600912170" />
-    <state x="1911" y="127" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590443862804" />
-    <state x="265" y="16" width="1254" height="835" key="CommitChangelistDialog2" timestamp="1590603090895">
-      <screen x="0" y="96" width="1600" height="804" />
+    <state x="364" y="157" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590604383671" />
+    <state x="1911" y="127" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590609922336" />
+    <state x="1826" y="96" width="1071" height="741" key="CommitChangelistDialog2" timestamp="1590606053846">
+      <screen x="1600" y="69" width="1366" height="768" />
     </state>
     <state x="265" y="16" width="1254" height="835" key="CommitChangelistDialog2/1600.69.1366.768/0.96.1600.804@0.96.1600.804" timestamp="1590603090895" />
+    <state x="1826" y="96" width="1071" height="741" key="CommitChangelistDialog2/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590606053846" />
     <state x="583" y="207" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590602142590">
       <screen x="0" y="96" width="1600" height="804" />
     </state>
@@ -113,6 +151,10 @@
       <screen x="1600" y="69" width="1366" height="768" />
     </state>
     <state x="2058" y="149" width="506" height="633" key="RollbackChangesDialog/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590441978629" />
+    <state x="1911" y="201" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1590606055252">
+      <screen x="1600" y="69" width="1366" height="768" />
+    </state>
+    <state x="1911" y="201" width="800" height="528" key="Vcs.Push.Dialog.v2/1600.69.1366.768/0.96.1600.804@1600.69.1366.768" timestamp="1590606055252" />
     <state x="2218" y="343" width="187" height="244" key="com.intellij.database.actions.DdlActions$ModifyObject$1" timestamp="1590443656413">
       <screen x="1600" y="69" width="1366" height="768" />
     </state>
