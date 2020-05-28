@@ -2,7 +2,7 @@
 https://cursos.alura.com.br/course/pipeline-ci-jenkins-docker
 
 ## Tecnologias utilizadas
-```bash
+```
 Jenkins
 MySQL
 Python
@@ -11,6 +11,8 @@ Dockerhub
 Github
 Slack
 Sonarcube
+npm -v                                  <- Utilizei a 6.14.4
+node -v                                 <- Utilizei a 12.17.0
 ```
 
 ## Ubuntu 18.04, meu perfil não é python, apontei para um Projeto Node, MySQL
