@@ -84,6 +84,8 @@ http://localhost:8080/                                          <- Jenkins
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword          <- Senha Jenkins, instalar os plugins default
 user: adm
 pass: mestre123
+service jenkins stop                                            <- Stop Jenkins
+service jenkins start                                           <- Start Jenkins
 
 ### Adicionando credenciais
 Credentials -> 
